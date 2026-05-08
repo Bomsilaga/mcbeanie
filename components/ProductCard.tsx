@@ -31,7 +31,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
       <Link href={`/products/${product.slug}`}>
         <div className="relative h-64 bg-gray-200 overflow-hidden">
           <Image
-            src={`https://via.placeholder.com/500x500?text=${encodeURIComponent(product.name)}`}
+            src={product.image || product.images?.[0] || '/lv-beanie-hero.png'}
             alt={product.name}
             fill
             className="object-cover group-hover:scale-110 transition duration-500"
@@ -47,7 +47,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
             style={{ pointerEvents: showOverlay ? 'auto' : 'none' }}
           >
             <motion.button
-              className="bg-white text-purple-600 p-3 rounded-full hover:bg-purple-600 hover:text-white transition"
+              className="bg-white text-teal-600 p-3 rounded-full hover:bg-teal-600 hover:text-white transition"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -85,7 +85,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
 
       <div className="p-5">
         <Link href={`/products/${product.slug}`}>
-          <h3 className="font-bold text-lg mb-1 hover:text-purple-600 transition line-clamp-2">
+          <h3 className="font-bold text-lg mb-1 hover:text-teal-600 transition line-clamp-2">
             {product.name}
           </h3>
         </Link>
@@ -93,7 +93,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
 
         <div className="flex items-center justify-between mb-5 pb-4 border-b border-gray-100">
           <div>
-            <motion.p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <motion.p className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
               A${product.price}
             </motion.p>
             <p className={`text-xs font-semibold mt-1 ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}`}>
@@ -121,7 +121,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
           className={`w-full py-3 rounded-lg font-semibold transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${
             justAdded
               ? 'bg-green-600 text-white'
-              : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-lg'
+              : 'bg-gradient-to-r from-teal-600 to-cyan-600 text-white hover:shadow-lg'
           }`}
           whileHover={{ scale: product.stock > 0 ? 1.02 : 1 }}
           whileTap={{ scale: product.stock > 0 ? 0.98 : 1 }}
@@ -142,3 +142,4 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
     </motion.div>
   );
 }
+

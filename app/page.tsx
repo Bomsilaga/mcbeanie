@@ -47,7 +47,7 @@ export default function Home() {
 
       {/* Full-Screen Animated Hero Section */}
       {featuredProduct && (
-        <section className="relative h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden flex flex-col justify-between">
+        <section className="relative h-screen bg-gradient-to-br from-slate-900 via-teal-900 to-slate-900 overflow-hidden flex flex-col justify-between">
           <AnimatedBackground />
 
           {/* Top Content */}
@@ -60,7 +60,7 @@ export default function Home() {
             >
               <motion.div variants={itemVariants}>
                 <motion.div
-                  className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full border border-purple-400/30 backdrop-blur"
+                  className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-teal-500/20 to-pink-500/20 rounded-full border border-teal-400/30 backdrop-blur"
                   animate={{
                     boxShadow: [
                       '0 0 20px rgba(168, 85, 247, 0.2)',
@@ -70,7 +70,7 @@ export default function Home() {
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
                 >
-                  <p className="text-purple-300 text-sm font-semibold flex items-center gap-2 justify-center">
+                  <p className="text-teal-300 text-sm font-semibold flex items-center gap-2 justify-center">
                     <motion.span
                       animate={{ rotate: 360, scale: [1, 1.2, 1] }}
                       transition={{ duration: 3, repeat: Infinity }}
@@ -87,8 +87,8 @@ export default function Home() {
                   Never-Worn
                 </h1>
                 <div className="relative inline-block">
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 blur-2xl opacity-50" />
-                  <h2 className="relative text-5xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300 bg-clip-text text-transparent">
+                  <div className="absolute inset-0 bg-gradient-to-r from-teal-500 via-cyan-500 to-teal-500 blur-2xl opacity-50" />
+                  <h2 className="relative text-5xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-teal-300 via-cyan-300 to-teal-300 bg-clip-text text-transparent">
                     Premium Beanies
                   </h2>
                 </div>
@@ -112,7 +112,7 @@ export default function Home() {
                   <Link
                     href="https://depop.app.link/6g078fuJW2b"
                     target="_blank"
-                    className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white rounded-full font-bold text-base md:text-lg hover:shadow-2xl transition duration-300 backdrop-blur-sm border border-purple-400/50"
+                    className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-gradient-to-r from-teal-600 via-cyan-600 to-teal-600 text-white rounded-full font-bold text-base md:text-lg hover:shadow-2xl transition duration-300 backdrop-blur-sm border border-teal-400/50"
                   >
                     <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 2, repeat: Infinity }}>
                       <ExternalLink size={22} />
@@ -144,10 +144,10 @@ export default function Home() {
               className="w-full max-w-5xl h-full max-h-[600px] md:max-h-[700px] lg:max-h-[750px]"
               style={{ perspective: '1200px' }}
             >
-              <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-purple-900 to-pink-900">
+              <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-teal-900 to-cyan-900">
                 {/* Animated background effect */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-transparent to-pink-600/20"
+                  className="absolute inset-0 bg-gradient-to-br from-teal-600/20 via-transparent to-cyan-600/20"
                   animate={{
                     opacity: [0.5, 1, 0.5],
                   }}
@@ -161,7 +161,7 @@ export default function Home() {
                   transition={{ duration: 0.5 }}
                 >
                   <Image
-                    src={`https://via.placeholder.com/800x600?text=${encodeURIComponent(featuredProduct.name)}`}
+                    src={featuredProduct.image || '/lv-beanie-hero.png'}
                     alt={featuredProduct.name}
                     fill
                     className="object-cover"
@@ -181,7 +181,7 @@ export default function Home() {
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.8, duration: 0.6 }}
                     >
-                      <p className="text-purple-300 text-sm font-semibold mb-2">FEATURED ITEM</p>
+                      <p className="text-teal-300 text-sm font-semibold mb-2">FEATURED ITEM</p>
                       <h3 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
                         {featuredProduct.name}
                       </h3>
@@ -199,7 +199,7 @@ export default function Home() {
 
                 {/* Animated border glow */}
                 <motion.div
-                  className="absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r from-purple-500/50 via-pink-500/50 to-purple-500/50 bg-clip-border"
+                  className="absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r from-teal-500/50 via-cyan-500/50 to-purple-500/50 bg-clip-border"
                   animate={{
                     opacity: [0.5, 1, 0.5],
                   }}
@@ -214,7 +214,7 @@ export default function Home() {
 
       {/* Pristine Collection */}
       <section className="py-24 bg-white relative overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
 
         <div className="relative max-w-7xl mx-auto px-4">
@@ -228,11 +228,11 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full border border-purple-200/50"
+              className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-teal-500/10 to-pink-500/10 rounded-full border border-teal-200/50"
             >
-              <p className="text-purple-600 text-sm font-semibold">FEATURED COLLECTION</p>
+              <p className="text-teal-600 text-sm font-semibold">FEATURED COLLECTION</p>
             </motion.div>
-            <h2 className="text-5xl md:text-6xl font-bold text-center mb-6 bg-gradient-to-r from-gray-900 via-purple-800 to-gray-900 bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-6xl font-bold text-center mb-6 bg-gradient-to-r from-gray-900 via-teal-800 to-gray-900 bg-clip-text text-transparent">
               Premium Selection
             </h2>
             <p className="text-center text-gray-600 text-lg max-w-2xl mx-auto">
@@ -264,7 +264,7 @@ export default function Home() {
           >
             <Link
               href="/products"
-              className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-full font-bold hover:shadow-lg hover:shadow-purple-500/50 transition duration-300 transform hover:scale-105"
+              className="inline-block bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-10 py-4 rounded-full font-bold hover:shadow-lg hover:shadow-teal-500/50 transition duration-300 transform hover:scale-105"
             >
               Explore Full Collection
             </Link>
@@ -276,7 +276,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600" />
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-cyan-600 to-purple-600" />
         <motion.div
           className="absolute inset-0 opacity-30"
           animate={{
@@ -309,7 +309,7 @@ export default function Home() {
                 <Link
                   href="https://depop.app.link/6g078fuJW2b"
                   target="_blank"
-                  className="inline-block bg-white text-purple-600 px-10 py-4 rounded-full font-bold hover:shadow-xl transition duration-300"
+                  className="inline-block bg-white text-teal-600 px-10 py-4 rounded-full font-bold hover:shadow-xl transition duration-300"
                 >
                   Shop on Depop
                 </Link>
@@ -332,3 +332,4 @@ export default function Home() {
     </main>
   );
 }
+

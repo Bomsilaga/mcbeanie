@@ -56,7 +56,7 @@ export default function AnimatedBackground() {
 
       {/* Floating accent elements */}
       <motion.div
-        className="absolute w-64 h-64 bg-gradient-to-br from-purple-400/40 to-transparent rounded-full filter blur-2xl"
+        className="absolute w-64 h-64 bg-gradient-to-br from-teal-400/40 to-transparent rounded-full filter blur-2xl"
         animate={{
           y: [0, -100, 0],
           x: [0, 80, 0],
@@ -93,3 +93,4 @@ export default function AnimatedBackground() {
     </div>
   );
 }
+

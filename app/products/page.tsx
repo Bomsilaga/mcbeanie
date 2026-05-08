@@ -42,7 +42,7 @@ export default function ProductsPage() {
 
       {/* Featured Product Hero Section */}
       {featuredProduct && (
-        <section className="relative py-20 bg-gradient-to-br from-purple-900 via-slate-900 to-pink-900 overflow-hidden">
+        <section className="relative py-20 bg-gradient-to-br from-teal-900 via-slate-900 to-cyan-900 overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <motion.div
               animate={{
@@ -75,7 +75,7 @@ export default function ProductsPage() {
                   style={{ perspective: '1200px' }}
                 >
                   <Image
-                    src={`https://via.placeholder.com/600x700?text=${encodeURIComponent(featuredProduct.name)}`}
+                    src={featuredProduct.image || '/lv-beanie-hero.png'}
                     alt={featuredProduct.name}
                     fill
                     className="object-cover"
@@ -83,7 +83,7 @@ export default function ProductsPage() {
                     priority
                   />
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-pink-600/20"
+                    className="absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-cyan-600/20"
                     animate={{
                       opacity: [0.5, 1, 0.5],
                     }}
@@ -104,9 +104,9 @@ export default function ProductsPage() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
-                  className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full border border-purple-400/50"
+                  className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-teal-500/20 to-pink-500/20 rounded-full border border-teal-400/50"
                 >
-                  <p className="text-purple-200 text-sm font-semibold">★ FEATURED COLLECTION</p>
+                  <p className="text-teal-200 text-sm font-semibold">★ FEATURED COLLECTION</p>
                 </motion.div>
 
                 <motion.h2
@@ -134,25 +134,25 @@ export default function ProductsPage() {
                   className="mb-8 space-y-3"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400" />
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400" />
                     <span className="text-lg">
                       <span className="font-bold">Color:</span> {featuredProduct.color}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400" />
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400" />
                     <span className="text-lg">
                       <span className="font-bold">Condition:</span> {featuredProduct.details?.condition}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400" />
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400" />
                     <span className="text-lg">
                       <span className="font-bold">Authentication:</span> {featuredProduct.details?.authentication}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400" />
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400" />
                     <span className="text-lg">
                       <span className="font-bold">Material:</span> {featuredProduct.details?.material}
                     </span>
@@ -165,14 +165,14 @@ export default function ProductsPage() {
                   transition={{ delay: 0.8 }}
                   className="flex flex-col sm:flex-row gap-4 items-start"
                 >
-                  <div className="text-5xl font-black bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+                  <div className="text-5xl font-black bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent">
                     A${featuredProduct.price}
                   </div>
                   <div className="flex flex-col gap-2">
                     <span className="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-bold w-fit">
                       ✓ Verified Authentic
                     </span>
-                    <span className="bg-purple-600/80 text-white px-4 py-2 rounded-full text-sm font-bold w-fit">
+                    <span className="bg-teal-600/80 text-white px-4 py-2 rounded-full text-sm font-bold w-fit">
                       Never Worn - Pristine
                     </span>
                   </div>
@@ -188,7 +188,7 @@ export default function ProductsPage() {
                     <Link
                       href="https://depop.app.link/6g078fuJW2b"
                       target="_blank"
-                      className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-full font-bold hover:shadow-xl transition duration-300"
+                      className="inline-block bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-10 py-4 rounded-full font-bold hover:shadow-xl transition duration-300"
                     >
                       Shop on Depop
                     </Link>
@@ -221,7 +221,7 @@ export default function ProductsPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-12 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl border border-purple-100/30"
+          className="mb-12 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl border border-teal-100/30"
         >
           <h3 className="font-bold text-lg mb-6">Filters</h3>
 
@@ -235,7 +235,7 @@ export default function ProductsPage() {
                 id="sort-select"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="w-full border-2 border-purple-200 rounded-lg px-4 py-2 bg-white hover:border-purple-400 transition focus:outline-none focus:border-purple-600"
+                className="w-full border-2 border-teal-200 rounded-lg px-4 py-2 bg-white hover:border-teal-400 transition focus:outline-none focus:border-teal-600"
               >
                 <option value="newest">Newest</option>
                 <option value="price-low">Price: Low to High</option>
@@ -256,7 +256,7 @@ export default function ProductsPage() {
                   value={priceRange[0]}
                   onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
                   aria-label="Minimum price"
-                  className="w-full h-2 bg-purple-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                  className="w-full h-2 bg-teal-200 rounded-lg appearance-none cursor-pointer accent-teal-600"
                 />
                 <input
                   type="range"
@@ -265,7 +265,7 @@ export default function ProductsPage() {
                   value={priceRange[1]}
                   onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
                   aria-label="Maximum price"
-                  className="w-full h-2 bg-purple-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                  className="w-full h-2 bg-teal-200 rounded-lg appearance-none cursor-pointer accent-teal-600"
                 />
               </div>
             </div>
@@ -288,8 +288,8 @@ export default function ProductsPage() {
                     }}
                     className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
                       selectedColors.includes(color)
-                        ? 'bg-purple-600 text-white shadow-lg'
-                        : 'bg-white border border-purple-200 text-gray-700 hover:border-purple-400'
+                        ? 'bg-teal-600 text-white shadow-lg'
+                        : 'bg-white border border-teal-200 text-gray-700 hover:border-teal-400'
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -308,7 +308,7 @@ export default function ProductsPage() {
                 setPriceRange([65, 85]);
                 setSelectedColors([]);
               }}
-              className="mt-6 px-4 py-2 text-sm font-semibold text-purple-600 hover:bg-purple-100 rounded-lg transition"
+              className="mt-6 px-4 py-2 text-sm font-semibold text-teal-600 hover:bg-teal-100 rounded-lg transition"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -320,8 +320,8 @@ export default function ProductsPage() {
         {/* Results Count */}
         <div className="mb-6 flex items-center justify-between">
           <p className="text-sm font-semibold text-gray-600">
-            Showing <span className="text-purple-600 font-bold">{sortedProducts.length}</span> of{' '}
-            <span className="text-purple-600 font-bold">{neverWornProducts.length}</span> items
+            Showing <span className="text-teal-600 font-bold">{sortedProducts.length}</span> of{' '}
+            <span className="text-teal-600 font-bold">{neverWornProducts.length}</span> items
           </p>
         </div>
 
@@ -367,3 +367,4 @@ export default function ProductsPage() {
     </main>
   );
 }
+

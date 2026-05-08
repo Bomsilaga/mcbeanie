@@ -99,7 +99,7 @@ export default function ProductCarousel({
 
         {/* Animated gradient effect */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-pink-500/0 to-purple-500/0"
+          className="absolute inset-0 bg-gradient-to-r from-teal-500/0 via-cyan-500/0 to-purple-500/0"
           animate={{
             backgroundImage: [
               'linear-gradient(to right, rgba(168, 85, 247, 0), rgba(236, 72, 153, 0), rgba(168, 85, 247, 0))',
@@ -113,7 +113,7 @@ export default function ProductCarousel({
         {/* Navigation Buttons */}
         <motion.button
           onClick={() => paginate(-1)}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-purple-600/80 to-pink-600/80 hover:from-purple-600 hover:to-pink-600 text-white p-3 rounded-full backdrop-blur transition duration-300 shadow-lg"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-purple-600/80 to-cyan-600/80 hover:from-purple-600 hover:to-cyan-600 text-white p-3 rounded-full backdrop-blur transition duration-300 shadow-lg"
           aria-label="Previous image"
           whileHover={{ scale: 1.15, boxShadow: '0 0 25px rgba(168, 85, 247, 0.8)' }}
           whileTap={{ scale: 0.9 }}
@@ -123,7 +123,7 @@ export default function ProductCarousel({
 
         <motion.button
           onClick={() => paginate(1)}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-purple-600/80 to-pink-600/80 hover:from-purple-600 hover:to-pink-600 text-white p-3 rounded-full backdrop-blur transition duration-300 shadow-lg"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-purple-600/80 to-cyan-600/80 hover:from-purple-600 hover:to-cyan-600 text-white p-3 rounded-full backdrop-blur transition duration-300 shadow-lg"
           aria-label="Next image"
           whileHover={{ scale: 1.15, boxShadow: '0 0 25px rgba(168, 85, 247, 0.8)' }}
           whileTap={{ scale: 0.9 }}
@@ -134,7 +134,7 @@ export default function ProductCarousel({
         {/* Progress Indicator */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 backdrop-blur">
           <motion.div
-            className="h-full bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 shadow-lg shadow-purple-500/50"
+            className="h-full bg-gradient-to-r from-teal-400 via-cyan-400 to-purple-400 shadow-lg shadow-teal-500/50"
             animate={{ width: `${((current + 1) / images.length) * 100}%` }}
             transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
           />
@@ -172,7 +172,7 @@ export default function ProductCarousel({
             }}
             className={`relative flex-shrink-0 h-16 w-16 md:h-24 md:w-24 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
               index === current
-                ? 'border-purple-400 ring-2 ring-purple-400/50'
+                ? 'border-teal-400 ring-2 ring-purple-400/50'
                 : 'border-white/20 hover:border-white/50'
             }`}
             whileHover={{ scale: 1.12, y: -4 }}
@@ -191,7 +191,7 @@ export default function ProductCarousel({
             />
             {index === current && (
               <motion.div
-                className="absolute inset-0 border-2 border-purple-300 rounded-lg"
+                className="absolute inset-0 border-2 border-teal-300 rounded-lg"
                 animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.02, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
@@ -206,3 +206,4 @@ export default function ProductCarousel({
     </div>
   );
 }
+

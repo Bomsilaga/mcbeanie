@@ -28,7 +28,7 @@ export default function Header() {
       isScrolled
         ? 'bg-white/95 backdrop-blur shadow-md'
         : 'bg-white/80 backdrop-blur'
-    } border-b border-purple-100/20`}>
+    } border-b border-teal-100/20`}>
       <nav className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-all duration-300 ${
         isScrolled ? 'h-14' : 'h-16'
       }`}>
@@ -36,7 +36,7 @@ export default function Header() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Link href="/" className="font-bold text-xl sm:text-2xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent hover:opacity-80 transition">
+          <Link href="/" className="font-bold text-xl sm:text-2xl bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent hover:opacity-80 transition">
             McBeanie
           </Link>
         </motion.div>
@@ -51,7 +51,7 @@ export default function Header() {
             >
               <Link
                 href={link.href}
-                className="text-sm font-medium px-4 py-2 rounded-lg hover:bg-purple-100 hover:text-purple-700 transition duration-300"
+                className="text-sm font-medium px-4 py-2 rounded-lg hover:bg-teal-100 hover:text-purple-700 transition duration-300"
               >
                 {link.label}
               </Link>
@@ -65,7 +65,7 @@ export default function Header() {
           >
             <Link
               href="/cart"
-              className="relative inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition duration-300"
+              className="relative inline-flex items-center gap-2 bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-4 py-2 rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition duration-300"
             >
               <ShoppingCart size={18} />
               <span className="text-sm font-semibold">Cart</span>
@@ -113,7 +113,7 @@ export default function Header() {
                 ))}
                 <Link
                   href="/cart"
-                  className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition"
+                  className="flex items-center gap-2 bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition"
                   onClick={() => setIsOpen(false)}
                 >
                   <ShoppingCart size={18} />

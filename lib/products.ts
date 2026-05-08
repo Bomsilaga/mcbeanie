@@ -20,6 +20,8 @@ export const neverWornProducts: Product[] = [
       '/lv-beanie-lifestyle-2.png',
       '/lv-beanie-detail.png',
       '/lv-beanie-flatlay.png',
+      '/lv-beanie-hero.png',
+      '/lv-beanie-lifestyle-1.png',
     ],
     details: {
       brand: 'Louis Vuitton',
