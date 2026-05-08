@@ -105,7 +105,7 @@ export const neverWornProducts: Product[] = [
       size: 'One Size Fits All',
       yearRelease: 2024,
       condition: 'Never Worn - Pristine',
-      Authentication: 'Verified Authentic',
+      authentication: 'Verified Authentic',
     },
   },
   {
