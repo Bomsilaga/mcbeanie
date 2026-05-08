@@ -3,11 +3,11 @@ import { Product } from './types';
 export const neverWornProducts: Product[] = [
   {
     _id: 'lv-beanie-cream-black',
-    name: 'Authentic Louis Vuitton Cream & Black Beanie',
-    slug: 'authentic-lv-cream-black-beanie',
-    price: 450,
+    name: 'Premium Cream & Black Two-Tone Beanie',
+    slug: 'premium-cream-black-beanie',
+    price: 85,
     image: '/lv-beanie-hero.png',
-    description: 'Pristine never-worn Louis Vuitton beanie in cream and black two-tone. Features the iconic LV monogram pattern and comes with original dust bag and packaging. Authenticated and verified for authenticity.',
+    description: 'Pristine never-worn designer beanie in cream and black two-tone. Features premium monogram pattern and comes with original dust bag and packaging. Authenticated and verified for authenticity.',
     stock: 1,
     size: 'One Size',
     color: 'Cream & Black',

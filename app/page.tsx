@@ -73,7 +73,7 @@ export default function Home() {
               <motion.div variants={itemVariants}>
                 <div className="inline-block mb-6 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full border border-purple-400/30">
                   <p className="text-purple-300 text-sm font-semibold flex items-center gap-2">
-                    <Star size={16} /> FEATURED: Never-Worn & Authenticated
+                    <Star size={16} /> FEATURED: Verified Pristine Condition
                   </p>
                 </div>
               </motion.div>
@@ -82,9 +82,9 @@ export default function Home() {
                 variants={itemVariants}
                 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
               >
-                Authentic <br />
+                Never-Worn <br />
                 <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-                  Luxury Beanies
+                  Premium Beanies
                 </span>
               </motion.h1>
 
@@ -92,7 +92,7 @@ export default function Home() {
                 variants={itemVariants}
                 className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8"
               >
-                Never-worn, pristine designer beanies. Verified authentic. Limited availability. Curated for the culture.
+                Pristine, never-worn designer beanies. Verified authentic. Limited stock. Premium quality.
               </motion.p>
 
               <motion.div
@@ -239,7 +239,7 @@ export default function Home() {
         </section>
       )}
 
-      {/* Never-Worn Collection */}
+      {/* Pristine Collection */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
@@ -248,9 +248,9 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h2 className="text-4xl font-bold text-center mb-4">Never-Worn Collection</h2>
+            <h2 className="text-4xl font-bold text-center mb-4">Premium Collection</h2>
             <p className="text-center text-gray-600 text-lg">
-              Exclusively never-worn, authenticated luxury beanies. All items guaranteed pristine condition.
+              Exclusively pristine, verified authentic designer beanies. Never-worn, original condition guaranteed.
             </p>
           </motion.div>
 

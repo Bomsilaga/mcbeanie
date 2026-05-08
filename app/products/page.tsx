@@ -31,13 +31,13 @@ export default function ProductsPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-12"
         >
-          <h1 className="text-4xl font-bold mb-4">Never-Worn Collection</h1>
+          <h1 className="text-4xl font-bold mb-4">Premium Beanie Collection</h1>
           <p className="text-gray-600 text-lg">
-            Exclusive collection of authenticated, never-worn luxury beanies. All items guaranteed pristine condition.
+            Carefully curated collection of pristine, never-worn designer beanies. All items in original condition.
           </p>
           <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
             <p className="text-green-800">
-              <span className="font-bold">✓ 100% Authentic</span> • All items verified and authenticated by luxury brand experts
+              <span className="font-bold">✓ Verified Authentic</span> • All items authenticated and verified
             </p>
           </div>
         </motion.div>
