@@ -27,8 +27,8 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
             className="object-cover"
             unoptimized
           />
-          <div className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-            {product.condition}
+          <div className="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+            Never Worn
           </div>
         </div>
       </Link>

@@ -8,8 +8,18 @@ export interface Product {
   stock: number;
   size?: string;
   color: string;
-  condition: 'new' | 'like-new' | 'good' | 'fair';
+  condition: 'never-worn' | 'like-new' | 'good' | 'fair';
   authenticated: boolean;
+  featured?: boolean;
+  images?: string[];
+  details?: {
+    brand: string;
+    material: string;
+    size: string;
+    yearRelease: number;
+    condition: string;
+    authentication: string;
+  };
 }
 
 export interface BlogPost {
