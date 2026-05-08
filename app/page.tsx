@@ -1,65 +1,46 @@
-import Image from "next/image";
+import Hero from '@/components/Hero';
+import Reviews from '@/components/Reviews';
+import Header from '@/components/Header';
+import ProductCard from '@/components/ProductCard';
+import { Product } from '@/lib/types';
+
+const placeholderProducts: Product[] = Array.from({ length: 6 }, (_, i) => ({
+  _id: `prod-${i + 1}`,
+  name: `Authentic LV Beanie ${i + 1}`,
+  slug: `authentic-lv-beanie-${i + 1}`,
+  price: 150 + i * 50,
+  image: `https://images.unsplash.com/photo-${Math.random().toString(36).substring(7)}?w=500&h=500`,
+  description: 'Premium authenticated Louis Vuitton beanie in perfect condition.',
+  stock: Math.floor(Math.random() * 5) + 1,
+  color: ['Black', 'Grey', 'Navy', 'Brown', 'Burgundy', 'White'][i],
+  condition: ['new', 'like-new', 'good'][Math.floor(Math.random() * 3)] as any,
+  authenticated: true,
+}));
 
 export default function Home() {
+  const handleAddToCart = (product: Product) => {
+    console.log('Added to cart:', product);
+    // Cart logic will be implemented
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-white">
+      <Header />
+      <Hero />
+
+      {/* Featured Products */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12">Featured Collection</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {placeholderProducts.slice(0, 6).map((product) => (
+              <ProductCard key={product._id} product={product} onAddToCart={handleAddToCart} />
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+
+      <Reviews />
+    </main>
   );
 }
