@@ -44,21 +44,22 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Header />
 
-      {/* Animated Hero Section with Carousel */}
+      {/* Full-Screen Animated Hero Section */}
       {featuredProduct && (
-        <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
+        <section className="relative h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden flex flex-col justify-between">
           <AnimatedBackground />
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4 py-12 md:py-20">
+          {/* Top Content */}
+          <div className="relative z-10 flex-1 flex flex-col justify-start pt-8 md:pt-12">
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="mb-12 text-center"
+              className="max-w-7xl mx-auto w-full px-4 text-center"
             >
               <motion.div variants={itemVariants}>
                 <motion.div
-                  className="inline-block mb-6 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full border border-purple-400/30 backdrop-blur"
+                  className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full border border-purple-400/30 backdrop-blur"
                   animate={{
                     boxShadow: [
                       '0 0 20px rgba(168, 85, 247, 0.2)',
@@ -79,7 +80,7 @@ export default function Home() {
 
               <motion.h1
                 variants={itemVariants}
-                className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
+                className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight"
               >
                 Never-Worn <br />
                 <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
@@ -89,14 +90,14 @@ export default function Home() {
 
               <motion.p
                 variants={itemVariants}
-                className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8"
+                className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-6 md:mb-8"
               >
                 Pristine, never-worn designer beanies. Verified authentic. Limited stock. Premium quality.
               </motion.p>
 
               <motion.div
                 variants={itemVariants}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
+                className="flex flex-col sm:flex-row gap-3 justify-center"
               >
                 <motion.div
                   whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(168, 85, 247, 0.5)' }}
@@ -105,7 +106,7 @@ export default function Home() {
                   <Link
                     href="https://depop.app.link/6g078fuJW2b"
                     target="_blank"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition duration-300"
+                    className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-bold text-base md:text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition duration-300"
                   >
                     <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 2, repeat: Infinity }}>
                       <ExternalLink size={20} />
@@ -119,20 +120,22 @@ export default function Home() {
                 >
                   <Link
                     href="/products"
-                    className="inline-flex items-center justify-center px-8 py-4 bg-white/10 border-2 border-purple-400 text-white rounded-xl font-bold text-lg hover:bg-white/20 transition duration-300 backdrop-blur"
+                    className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-white/10 border-2 border-purple-400 text-white rounded-xl font-bold text-base md:text-lg hover:bg-white/20 transition duration-300 backdrop-blur"
                   >
                     Browse Collection
                   </Link>
                 </motion.div>
               </motion.div>
             </motion.div>
+          </div>
 
-            {/* Carousel with Animation Wrapper */}
+          {/* Full-Screen Carousel */}
+          <div className="relative z-10 flex-1 flex items-center justify-center px-4 pb-8 md:pb-12">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="mb-12"
+              className="w-full max-w-6xl h-full max-h-[500px] md:max-h-[600px] lg:max-h-[700px]"
             >
               <ProductCarousel
                 images={
@@ -145,6 +148,7 @@ export default function Home() {
                 productName={featuredProduct.name}
               />
             </motion.div>
+          </div>
 
             {/* Featured Product Details */}
             <motion.div

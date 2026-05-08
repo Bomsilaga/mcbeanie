@@ -63,10 +63,10 @@ export default function ProductCarousel({
   };
 
   return (
-    <div className="relative w-full max-w-5xl mx-auto">
+    <div className="relative w-full h-full flex flex-col justify-between">
       {/* Main Carousel */}
       <div
-        className="relative h-96 md:h-[500px] lg:h-[600px] bg-gray-900 rounded-3xl overflow-hidden group shadow-2xl"
+        className="relative flex-1 bg-gray-900 rounded-3xl overflow-hidden group shadow-2xl"
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
@@ -162,7 +162,7 @@ export default function ProductCarousel({
       </div>
 
       {/* Animated Thumbnails */}
-      <div className="flex gap-3 mt-8 justify-center overflow-x-auto pb-2">
+      <div className="flex gap-2 md:gap-3 justify-center overflow-x-auto py-3 md:py-4 bg-black/20 backdrop-blur">
         {images.map((image, index) => (
           <motion.button
             key={index}
@@ -170,7 +170,7 @@ export default function ProductCarousel({
               setDirection(index > current ? 1 : -1);
               setCurrent(index);
             }}
-            className={`relative flex-shrink-0 h-20 w-20 rounded-xl overflow-hidden border-2 transition ${
+            className={`relative flex-shrink-0 h-16 w-16 md:h-20 md:w-20 rounded-xl overflow-hidden border-2 transition ${
               index === current ? 'border-purple-500 shadow-lg shadow-purple-500/50' : 'border-gray-300 hover:border-purple-300'
             }`}
             whileHover={{ scale: 1.1 }}
@@ -197,19 +197,6 @@ export default function ProductCarousel({
           </motion.button>
         ))}
       </div>
-
-      {/* Animated Image Info */}
-      <motion.div
-        key={current}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.5 }}
-        className="mt-8 text-center"
-      >
-        <h3 className="text-xl font-bold text-gray-800">{images[current].title}</h3>
-        <p className="text-gray-600 text-sm mt-2">{productName}</p>
-      </motion.div>
     </div>
   );
 }
