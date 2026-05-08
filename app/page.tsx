@@ -1,8 +1,11 @@
+'use client';
+
 import Hero from '@/components/Hero';
 import Reviews from '@/components/Reviews';
 import Header from '@/components/Header';
 import ProductCard from '@/components/ProductCard';
 import { Product } from '@/lib/types';
+import { useState } from 'react';
 
 const placeholderProducts: Product[] = Array.from({ length: 6 }, (_, i) => ({
   _id: `prod-${i + 1}`,
@@ -18,9 +21,11 @@ const placeholderProducts: Product[] = Array.from({ length: 6 }, (_, i) => ({
 }));
 
 export default function Home() {
+  const [cart, setCart] = useState<Product[]>([]);
+
   const handleAddToCart = (product: Product) => {
-    console.log('Added to cart:', product);
-    // Cart logic will be implemented
+    setCart([...cart, product]);
+    alert(`${product.name} added to cart!`);
   };
 
   return (
