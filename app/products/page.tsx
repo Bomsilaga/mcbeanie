@@ -2,9 +2,11 @@
 
 import Header from '@/components/Header';
 import ProductCard from '@/components/ProductCard';
-import { neverWornProducts } from '@/lib/products';
+import { neverWornProducts, getFeaturedProduct } from '@/lib/products';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ProductsPage() {
   const [cart, setCart] = useState<any[]>([]);
@@ -31,9 +33,172 @@ export default function ProductsPage() {
     alert(`${product.name} added to cart!`);
   };
 
+  const featuredProduct = getFeaturedProduct();
+  const otherProducts = neverWornProducts.filter((p) => !p.featured);
+
   return (
     <main className="min-h-screen bg-white">
       <Header />
+
+      {/* Featured Product Hero Section */}
+      {featuredProduct && (
+        <section className="relative py-20 bg-gradient-to-br from-purple-900 via-slate-900 to-pink-900 overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <motion.div
+              animate={{
+                backgroundPosition: ['0% 0%', '100% 100%'],
+              }}
+              transition={{ duration: 20, repeat: Infinity }}
+              className="w-full h-full"
+              style={{
+                backgroundImage:
+                  'radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.2), transparent 50%)',
+                backgroundSize: '200% 200%',
+              }}
+            />
+          </div>
+
+          <div className="relative max-w-7xl mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Featured Product Image */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05, rotateY: 5 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative h-96 md:h-[500px] rounded-2xl overflow-hidden shadow-2xl"
+                  style={{ perspective: '1200px' }}
+                >
+                  <Image
+                    src={`https://via.placeholder.com/600x700?text=${encodeURIComponent(featuredProduct.name)}`}
+                    alt={featuredProduct.name}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                    priority
+                  />
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-pink-600/20"
+                    animate={{
+                      opacity: [0.5, 1, 0.5],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                </motion.div>
+              </motion.div>
+
+              {/* Featured Product Info */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-white"
+              >
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full border border-purple-400/50"
+                >
+                  <p className="text-purple-200 text-sm font-semibold">★ FEATURED COLLECTION</p>
+                </motion.div>
+
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-5xl md:text-6xl font-black mb-4 leading-tight"
+                >
+                  {featuredProduct.name}
+                </motion.h2>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="text-xl text-gray-200 mb-6"
+                >
+                  {featuredProduct.description}
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  className="mb-8 space-y-3"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400" />
+                    <span className="text-lg">
+                      <span className="font-bold">Color:</span> {featuredProduct.color}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400" />
+                    <span className="text-lg">
+                      <span className="font-bold">Condition:</span> {featuredProduct.details?.condition}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400" />
+                    <span className="text-lg">
+                      <span className="font-bold">Authentication:</span> {featuredProduct.details?.authentication}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400" />
+                    <span className="text-lg">
+                      <span className="font-bold">Material:</span> {featuredProduct.details?.material}
+                    </span>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                  className="flex flex-col sm:flex-row gap-4 items-start"
+                >
+                  <div className="text-5xl font-black bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+                    A${featuredProduct.price}
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <span className="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-bold w-fit">
+                      ✓ Verified Authentic
+                    </span>
+                    <span className="bg-purple-600/80 text-white px-4 py-2 rounded-full text-sm font-bold w-fit">
+                      Never Worn - Pristine
+                    </span>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9 }}
+                  className="mt-8 flex gap-4"
+                >
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Link
+                      href="https://depop.app.link/6g078fuJW2b"
+                      target="_blank"
+                      className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-full font-bold hover:shadow-xl transition duration-300"
+                    >
+                      Shop on Depop
+                    </Link>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      )}
 
       <div className="max-w-7xl mx-auto px-4 py-12">
         <motion.div
@@ -160,18 +325,32 @@ export default function ProductsPage() {
           </p>
         </div>
 
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12 text-center"
+        >
+          <h3 className="text-4xl font-bold mb-3">More Premium Selections</h3>
+          <p className="text-gray-600">Explore our complete collection of authenticated never-worn beanies</p>
+        </motion.div>
+
         {/* Products Grid */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ staggerChildren: 0.1 }}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {sortedProducts.map((product) => (
+          {sortedProducts.map((product, idx) => (
             <motion.div
               key={product._id}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.05 }}
             >
               <ProductCard product={product} onAddToCart={handleAddToCart} />
             </motion.div>

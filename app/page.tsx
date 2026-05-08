@@ -9,7 +9,8 @@ import { neverWornProducts, getFeaturedProduct } from '@/lib/products';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ExternalLink, Star, Sparkles } from 'lucide-react';
+import { ExternalLink, Star, Sparkles, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
   const [cart, setCart] = useState<any[]>([]);
@@ -69,8 +70,11 @@ export default function Home() {
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
                 >
-                  <p className="text-purple-300 text-sm font-semibold flex items-center gap-2">
-                    <motion.span animate={{ rotate: 360 }} transition={{ duration: 3, repeat: Infinity }}>
+                  <p className="text-purple-300 text-sm font-semibold flex items-center gap-2 justify-center">
+                    <motion.span
+                      animate={{ rotate: 360, scale: [1, 1.2, 1] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                    >
                       <Sparkles size={16} />
                     </motion.span>
                     FEATURED: Verified Pristine Condition
@@ -131,24 +135,78 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Full-Screen Carousel */}
+          {/* Full-Screen Featured Product Display */}
           <div className="relative z-10 flex-1 flex items-center justify-center px-4 pb-8 md:pb-12">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="w-full max-w-6xl h-full max-h-[500px] md:max-h-[600px] lg:max-h-[700px]"
+              initial={{ opacity: 0, scale: 0.8, rotateY: -20 }}
+              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+              transition={{ duration: 1, delay: 0.4, type: 'spring', stiffness: 100 }}
+              className="w-full max-w-5xl h-full max-h-[600px] md:max-h-[700px] lg:max-h-[750px]"
+              style={{ perspective: '1200px' }}
             >
-              <ProductCarousel
-                images={
-                  featuredProduct.images?.map((img) => ({
-                    src: img,
-                    alt: featuredProduct.name,
-                    title: `${featuredProduct.name} - ${featuredProduct.color}`,
-                  })) || []
-                }
-                productName={featuredProduct.name}
-              />
+              <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-purple-900 to-pink-900">
+                {/* Animated background effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-transparent to-pink-600/20"
+                  animate={{
+                    opacity: [0.5, 1, 0.5],
+                  }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                />
+
+                {/* Featured Product Image */}
+                <motion.div
+                  className="relative w-full h-full"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Image
+                    src={`https://via.placeholder.com/800x600?text=${encodeURIComponent(featuredProduct.name)}`}
+                    alt={featuredProduct.name}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                    priority
+                  />
+
+                  {/* Animated overlay with product info */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6, duration: 0.8 }}
+                  >
+                    <motion.div
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.8, duration: 0.6 }}
+                    >
+                      <p className="text-purple-300 text-sm font-semibold mb-2">FEATURED ITEM</p>
+                      <h3 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
+                        {featuredProduct.name}
+                      </h3>
+                      <div className="flex items-center gap-4 mb-4">
+                        <span className="text-3xl font-bold text-transparent bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text">
+                          A${featuredProduct.price}
+                        </span>
+                        <span className="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-bold">
+                          Never Worn
+                        </span>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
+
+                {/* Animated border glow */}
+                <motion.div
+                  className="absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r from-purple-500/50 via-pink-500/50 to-purple-500/50 bg-clip-border"
+                  animate={{
+                    opacity: [0.5, 1, 0.5],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  style={{ pointerEvents: 'none' }}
+                />
+              </div>
             </motion.div>
           </div>
         </section>

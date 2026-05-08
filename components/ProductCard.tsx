@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ShoppingCart, Heart, Eye } from 'lucide-react';
+import { ShoppingCart, Heart, Eye, Check } from 'lucide-react';
 import { useState } from 'react';
 import { Product } from '@/lib/types';
 
@@ -15,6 +15,7 @@ interface ProductCardProps {
 export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [justAdded, setJustAdded] = useState(false);
 
   return (
     <motion.div
@@ -111,16 +112,31 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
 
         <motion.button
           type="button"
-          onClick={() => onAddToCart(product)}
+          onClick={() => {
+            onAddToCart(product);
+            setJustAdded(true);
+            setTimeout(() => setJustAdded(false), 2000);
+          }}
           disabled={product.stock === 0}
-          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className={`w-full py-3 rounded-lg font-semibold transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${
+            justAdded
+              ? 'bg-green-600 text-white'
+              : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-lg'
+          }`}
           whileHover={{ scale: product.stock > 0 ? 1.02 : 1 }}
           whileTap={{ scale: product.stock > 0 ? 0.98 : 1 }}
         >
-          <motion.span animate={{ y: [0, -2, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-            <ShoppingCart size={18} />
+          <motion.span
+            animate={justAdded ? { rotate: 360 } : { y: [0, -2, 0] }}
+            transition={
+              justAdded
+                ? { duration: 0.5 }
+                : { duration: 2, repeat: Infinity }
+            }
+          >
+            {justAdded ? <Check size={18} /> : <ShoppingCart size={18} />}
           </motion.span>
-          Add to Cart
+          {justAdded ? 'Added to Cart!' : 'Add to Cart'}
         </motion.button>
       </div>
     </motion.div>
