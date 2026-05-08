@@ -12,7 +12,7 @@ const placeholderProducts: Product[] = Array.from({ length: 6 }, (_, i) => ({
   name: `Authentic LV Beanie ${i + 1}`,
   slug: `authentic-lv-beanie-${i + 1}`,
   price: 150 + i * 50,
-  image: `https://images.unsplash.com/photo-${Math.random().toString(36).substring(7)}?w=500&h=500`,
+  image: `https://via.placeholder.com/500x500?text=LV+Beanie+${i + 1}`,
   description: 'Premium authenticated Louis Vuitton beanie in perfect condition.',
   stock: Math.floor(Math.random() * 5) + 1,
   color: ['Black', 'Grey', 'Navy', 'Brown', 'Burgundy', 'White'][i],

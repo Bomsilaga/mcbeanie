@@ -10,7 +10,7 @@ const placeholderProducts: Product[] = Array.from({ length: 10 }, (_, i) => ({
   name: `Authentic LV Beanie ${i + 1}`,
   slug: `authentic-lv-beanie-${i + 1}`,
   price: 150 + i * 30,
-  image: `https://images.unsplash.com/photo-${Math.random().toString(36).substring(7)}?w=500&h=500`,
+  image: `https://via.placeholder.com/500x500?text=LV+Beanie+${i + 1}`,
   description: `Premium authenticated Louis Vuitton beanie in ${['black', 'grey', 'navy', 'brown', 'burgundy', 'white', 'cream', 'olive', 'tan', 'charcoal'][i]} condition.`,
   stock: Math.floor(Math.random() * 5) + 1,
   color: ['Black', 'Grey', 'Navy', 'Brown', 'Burgundy', 'White', 'Cream', 'Olive', 'Tan', 'Charcoal'][i],
@@ -46,8 +46,9 @@ export default function ProductsPage() {
         {/* Filters */}
         <div className="mb-8 flex gap-4 flex-wrap">
           <div>
-            <label className="block text-sm font-medium mb-2">Sort By</label>
+            <label htmlFor="sort-select" className="block text-sm font-medium mb-2">Sort By</label>
             <select
+              id="sort-select"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
               className="border rounded-lg px-4 py-2"

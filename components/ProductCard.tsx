@@ -21,10 +21,11 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
       <Link href={`/products/${product.slug}`}>
         <div className="relative h-64 bg-gray-200">
           <Image
-            src={`https://images.unsplash.com/photo-${Math.random().toString(36).substring(7)}?w=500&h=500&fit=crop`}
+            src={`https://via.placeholder.com/500x500?text=${encodeURIComponent(product.name)}`}
             alt={product.name}
             fill
             className="object-cover"
+            unoptimized
           />
           <div className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
             {product.condition}
