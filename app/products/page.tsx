@@ -9,8 +9,18 @@ import { motion } from 'framer-motion';
 export default function ProductsPage() {
   const [cart, setCart] = useState<any[]>([]);
   const [sortBy, setSortBy] = useState<'price-low' | 'price-high' | 'newest'>('newest');
+  const [priceRange, setPriceRange] = useState<[number, number]>([65, 85]);
+  const [selectedColors, setSelectedColors] = useState<string[]>([]);
 
-  const sortedProducts = [...neverWornProducts].sort((a, b) => {
+  const colors = [...new Set(neverWornProducts.map((p) => p.color))];
+
+  const filteredProducts = neverWornProducts.filter((product) => {
+    const priceMatch = product.price >= priceRange[0] && product.price <= priceRange[1];
+    const colorMatch = selectedColors.length === 0 || selectedColors.includes(product.color);
+    return priceMatch && colorMatch;
+  });
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sortBy === 'price-low') return a.price - b.price;
     if (sortBy === 'price-high') return b.price - a.price;
     return 0;
@@ -43,25 +53,111 @@ export default function ProductsPage() {
         </motion.div>
 
         {/* Filters */}
-        <div className="mb-8 flex gap-4 flex-wrap items-end">
-          <div>
-            <label htmlFor="sort-select" className="block text-sm font-medium mb-2">
-              Sort By
-            </label>
-            <select
-              id="sort-select"
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
-              className="border rounded-lg px-4 py-2 bg-white hover:border-purple-400 transition"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-12 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl border border-purple-100/30"
+        >
+          <h3 className="font-bold text-lg mb-6">Filters</h3>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Sort */}
+            <div>
+              <label htmlFor="sort-select" className="block text-sm font-semibold mb-3 text-gray-700">
+                Sort By
+              </label>
+              <select
+                id="sort-select"
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as any)}
+                className="w-full border-2 border-purple-200 rounded-lg px-4 py-2 bg-white hover:border-purple-400 transition focus:outline-none focus:border-purple-600"
+              >
+                <option value="newest">Newest</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+              </select>
+            </div>
+
+            {/* Price Range */}
+            <div>
+              <label className="block text-sm font-semibold mb-3 text-gray-700">
+                Price Range: A${priceRange[0]} - A${priceRange[1]}
+              </label>
+              <div className="space-y-2">
+                <input
+                  type="range"
+                  min="65"
+                  max="85"
+                  value={priceRange[0]}
+                  onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
+                  aria-label="Minimum price"
+                  className="w-full h-2 bg-purple-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                />
+                <input
+                  type="range"
+                  min="65"
+                  max="85"
+                  value={priceRange[1]}
+                  onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
+                  aria-label="Maximum price"
+                  className="w-full h-2 bg-purple-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                />
+              </div>
+            </div>
+
+            {/* Colors */}
+            <div>
+              <label className="block text-sm font-semibold mb-3 text-gray-700">
+                Color
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {colors.map((color) => (
+                  <motion.button
+                    key={color}
+                    onClick={() => {
+                      setSelectedColors(
+                        selectedColors.includes(color)
+                          ? selectedColors.filter((c) => c !== color)
+                          : [...selectedColors, color]
+                      );
+                    }}
+                    className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
+                      selectedColors.includes(color)
+                        ? 'bg-purple-600 text-white shadow-lg'
+                        : 'bg-white border border-purple-200 text-gray-700 hover:border-purple-400'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {color}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Reset Filters */}
+          {(selectedColors.length > 0 || priceRange[0] !== 65 || priceRange[1] !== 85) && (
+            <motion.button
+              onClick={() => {
+                setPriceRange([65, 85]);
+                setSelectedColors([]);
+              }}
+              className="mt-6 px-4 py-2 text-sm font-semibold text-purple-600 hover:bg-purple-100 rounded-lg transition"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <option value="newest">Newest</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-            </select>
-          </div>
-          <div className="ml-auto text-sm text-gray-600">
-            Showing {sortedProducts.length} items
-          </div>
+              ✕ Reset Filters
+            </motion.button>
+          )}
+        </motion.div>
+
+        {/* Results Count */}
+        <div className="mb-6 flex items-center justify-between">
+          <p className="text-sm font-semibold text-gray-600">
+            Showing <span className="text-purple-600 font-bold">{sortedProducts.length}</span> of{' '}
+            <span className="text-purple-600 font-bold">{neverWornProducts.length}</span> items
+          </p>
         </div>
 
         {/* Products Grid */}

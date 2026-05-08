@@ -113,30 +113,30 @@ export default function ProductCarousel({
         {/* Navigation Buttons */}
         <motion.button
           onClick={() => paginate(-1)}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full backdrop-blur transition duration-300"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-purple-600/80 to-pink-600/80 hover:from-purple-600 hover:to-pink-600 text-white p-3 rounded-full backdrop-blur transition duration-300 shadow-lg"
           aria-label="Previous image"
-          whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.4)' }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.15, boxShadow: '0 0 25px rgba(168, 85, 247, 0.8)' }}
+          whileTap={{ scale: 0.9 }}
         >
-          <ChevronLeft size={24} />
+          <ChevronLeft size={28} />
         </motion.button>
 
         <motion.button
           onClick={() => paginate(1)}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full backdrop-blur transition duration-300"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-purple-600/80 to-pink-600/80 hover:from-purple-600 hover:to-pink-600 text-white p-3 rounded-full backdrop-blur transition duration-300 shadow-lg"
           aria-label="Next image"
-          whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.4)' }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.15, boxShadow: '0 0 25px rgba(168, 85, 247, 0.8)' }}
+          whileTap={{ scale: 0.9 }}
         >
-          <ChevronRight size={24} />
+          <ChevronRight size={28} />
         </motion.button>
 
         {/* Progress Indicator */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 backdrop-blur">
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 backdrop-blur">
           <motion.div
-            className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
+            className="h-full bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 shadow-lg shadow-purple-500/50"
             animate={{ width: `${((current + 1) / images.length) * 100}%` }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
           />
         </div>
 
@@ -162,7 +162,7 @@ export default function ProductCarousel({
       </div>
 
       {/* Animated Thumbnails */}
-      <div className="flex gap-2 md:gap-3 justify-center overflow-x-auto py-3 md:py-4 bg-black/20 backdrop-blur">
+      <div className="flex gap-2 md:gap-4 justify-center overflow-x-auto py-4 md:py-5 px-2 bg-gradient-to-r from-black/30 via-black/20 to-black/30 backdrop-blur-md">
         {images.map((image, index) => (
           <motion.button
             key={index}
@@ -170,29 +170,35 @@ export default function ProductCarousel({
               setDirection(index > current ? 1 : -1);
               setCurrent(index);
             }}
-            className={`relative flex-shrink-0 h-16 w-16 md:h-20 md:w-20 rounded-xl overflow-hidden border-2 transition ${
-              index === current ? 'border-purple-500 shadow-lg shadow-purple-500/50' : 'border-gray-300 hover:border-purple-300'
+            className={`relative flex-shrink-0 h-16 w-16 md:h-24 md:w-24 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+              index === current
+                ? 'border-purple-400 ring-2 ring-purple-400/50'
+                : 'border-white/20 hover:border-white/50'
             }`}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.12, y: -4 }}
             whileTap={{ scale: 0.95 }}
             animate={{
               boxShadow: index === current
-                ? '0 0 20px rgba(168, 85, 247, 0.5)'
-                : '0 0 0px rgba(168, 85, 247, 0)'
+                ? '0 10px 30px rgba(168, 85, 247, 0.6)'
+                : '0 5px 15px rgba(0, 0, 0, 0.3)'
             }}
           >
             <Image
               src={image.src}
               alt={image.alt}
               fill
-              className="object-cover"
+              className="object-cover group-hover:scale-110 transition duration-500"
             />
             {index === current && (
               <motion.div
-                className="absolute inset-0 border-2 border-purple-400"
-                animate={{ opacity: [0.5, 1, 0.5] }}
+                className="absolute inset-0 border-2 border-purple-300 rounded-lg"
+                animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.02, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
+            )}
+            {/* Overlay gradient for current */}
+            {index === current && (
+              <div className="absolute inset-0 bg-gradient-to-t from-purple-600/30 to-transparent" />
             )}
           </motion.button>
         ))}

@@ -78,49 +78,51 @@ export default function Home() {
                 </motion.div>
               </motion.div>
 
-              <motion.h1
-                variants={itemVariants}
-                className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight"
-              >
-                Never-Worn <br />
-                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-                  Premium Beanies
-                </span>
-              </motion.h1>
+              <motion.div variants={itemVariants} className="mb-4 md:mb-6">
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-4 leading-tight tracking-tight">
+                  Never-Worn
+                </h1>
+                <div className="relative inline-block">
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 blur-2xl opacity-50" />
+                  <h2 className="relative text-5xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300 bg-clip-text text-transparent">
+                    Premium Beanies
+                  </h2>
+                </div>
+              </motion.div>
 
               <motion.p
                 variants={itemVariants}
-                className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-6 md:mb-8"
+                className="text-lg md:text-2xl text-gray-200 max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed font-light"
               >
-                Pristine, never-worn designer beanies. Verified authentic. Limited stock. Premium quality.
+                Authenticated luxury beanies in pristine condition. Limited stock. Verified authentic. Timeless style.
               </motion.p>
 
               <motion.div
                 variants={itemVariants}
-                className="flex flex-col sm:flex-row gap-3 justify-center"
+                className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
               >
                 <motion.div
-                  whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(168, 85, 247, 0.5)' }}
+                  whileHover={{ scale: 1.08, boxShadow: '0 30px 60px rgba(168, 85, 247, 0.6)' }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
                     href="https://depop.app.link/6g078fuJW2b"
                     target="_blank"
-                    className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-bold text-base md:text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition duration-300"
+                    className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white rounded-full font-bold text-base md:text-lg hover:shadow-2xl transition duration-300 backdrop-blur-sm border border-purple-400/50"
                   >
                     <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-                      <ExternalLink size={20} />
+                      <ExternalLink size={22} />
                     </motion.span>
                     Shop on Depop
                   </Link>
                 </motion.div>
                 <motion.div
-                  whileHover={{ scale: 1.05, borderColor: '#a855f7', backgroundColor: 'rgba(255,255,255,0.15)' }}
+                  whileHover={{ scale: 1.08, borderColor: 'rgb(255, 255, 255)', backgroundColor: 'rgba(255,255,255,0.15)' }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
                     href="/products"
-                    className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-white/10 border-2 border-purple-400 text-white rounded-xl font-bold text-base md:text-lg hover:bg-white/20 transition duration-300 backdrop-blur"
+                    className="inline-flex items-center justify-center px-8 md:px-10 py-4 md:py-5 bg-white/10 border-2 border-white/40 text-white rounded-full font-bold text-base md:text-lg hover:bg-white/20 transition duration-300 backdrop-blur-sm"
                   >
                     Browse Collection
                   </Link>
@@ -153,21 +155,40 @@ export default function Home() {
       )}
 
       {/* Pristine Collection */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
+
+        <div className="relative max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-16 text-center"
           >
-            <h2 className="text-4xl font-bold text-center mb-4">Premium Collection</h2>
-            <p className="text-center text-gray-600 text-lg">
-              Exclusively pristine, verified authentic designer beanies. Never-worn, original condition guaranteed.
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full border border-purple-200/50"
+            >
+              <p className="text-purple-600 text-sm font-semibold">FEATURED COLLECTION</p>
+            </motion.div>
+            <h2 className="text-5xl md:text-6xl font-bold text-center mb-6 bg-gradient-to-r from-gray-900 via-purple-800 to-gray-900 bg-clip-text text-transparent">
+              Premium Selection
+            </h2>
+            <p className="text-center text-gray-600 text-lg max-w-2xl mx-auto">
+              Exclusively pristine, verified authentic designer beanies. Never-worn, original condition guaranteed. Curated for collectors and enthusiasts.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ staggerChildren: 0.1 }}
+            className="grid md:grid-cols-3 gap-8 mb-16"
+          >
             {neverWornProducts.slice(0, 6).map((product) => (
               <ProductCard
                 key={product._id}
@@ -175,35 +196,79 @@ export default function Home() {
                 onAddToCart={handleAddToCart}
               />
             ))}
-          </div>
+          </motion.div>
 
-          <div className="text-center mt-12">
+          <motion.div
+            className="text-center"
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            viewport={{ once: true }}
+          >
             <Link
               href="/products"
-              className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-lg font-bold hover:shadow-lg transition"
+              className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-full font-bold hover:shadow-lg hover:shadow-purple-500/50 transition duration-300 transform hover:scale-105"
             >
-              View All Never-Worn Items
+              Explore Full Collection
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       <Reviews />
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-purple-600 to-pink-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Support McBeanie</h2>
-          <p className="text-lg mb-8">
-            Can't find what you're looking for? Check out our full collection on Depop for more authenticated luxury beanies.
-          </p>
-          <Link
-            href="https://depop.app.link/6g078fuJW2b"
-            target="_blank"
-            className="inline-block bg-white text-purple-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition"
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600" />
+        <motion.div
+          className="absolute inset-0 opacity-30"
+          animate={{
+            backgroundPosition: ['0% 0%', '100% 100%'],
+          }}
+          transition={{ duration: 20, repeat: Infinity }}
+          style={{
+            backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.2), transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.2), transparent 50%)',
+            backgroundSize: '200% 200%',
+          }}
+        />
+
+        <div className="relative max-w-4xl mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
-            Browse on Depop
-          </Link>
+            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              Ready to Own Premium?
+            </h2>
+            <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+              Browse our complete collection on Depop or explore limited stock items directly. All items authenticated and verified for authenticity.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link
+                  href="https://depop.app.link/6g078fuJW2b"
+                  target="_blank"
+                  className="inline-block bg-white text-purple-600 px-10 py-4 rounded-full font-bold hover:shadow-xl transition duration-300"
+                >
+                  Shop on Depop
+                </Link>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link
+                  href="/products"
+                  className="inline-block bg-white/20 border-2 border-white text-white px-10 py-4 rounded-full font-bold hover:bg-white/30 transition duration-300 backdrop-blur"
+                >
+                  View Our Store
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </main>
