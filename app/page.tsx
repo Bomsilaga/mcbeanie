@@ -4,13 +4,11 @@ import Header from '@/components/Header';
 import Reviews from '@/components/Reviews';
 import ProductCarousel from '@/components/ProductCarousel';
 import ProductCard from '@/components/ProductCard';
-import AnimatedBackground from '@/components/AnimatedBackground';
-import { neverWornProducts, getFeaturedProduct } from '@/lib/products';
+import { getFeaturedProduct, neverWornProducts } from '@/lib/products';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ExternalLink, Star, Sparkles, ArrowRight } from 'lucide-react';
-import Image from 'next/image';
+import { ExternalLink, Sparkles } from 'lucide-react';
 
 export default function Home() {
   const [cart, setCart] = useState<any[]>([]);
@@ -45,170 +43,70 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Header />
 
-      {/* Full-Screen Animated Hero Section */}
+      {/* Full-Width Carousel Hero Section */}
       {featuredProduct && (
-        <section className="relative h-screen bg-gradient-to-br from-slate-900 via-teal-900 to-slate-900 overflow-hidden flex flex-col justify-between">
-          <AnimatedBackground />
+        <section className="relative w-full aspect-video bg-black overflow-hidden">
+          <ProductCarousel
+            images={
+              featuredProduct.images?.map((img) => ({
+                src: img,
+                alt: featuredProduct.name,
+                title: `${featuredProduct.name} - View ${featuredProduct.images.indexOf(img) + 1}`,
+              })) || []
+            }
+            productName={featuredProduct.name}
+            autoPlay={true}
+            autoPlayInterval={5000}
+          />
 
-          {/* Top Content */}
-          <div className="relative z-10 flex-1 flex flex-col justify-start pt-8 md:pt-12">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="max-w-7xl mx-auto w-full px-4 text-center"
+          {/* Overlay Content - Bottom Left */}
+          <motion.div
+            className="absolute bottom-0 left-0 z-20 p-6 md:p-12 bg-gradient-to-t from-black/90 via-black/50 to-transparent w-full md:w-1/2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            <p className="text-teal-300 text-xs md:text-sm font-semibold mb-3 flex items-center gap-2">
+              <Sparkles size={16} />
+              FEATURED COLLECTION
+            </p>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-3 leading-tight">
+              {featuredProduct.name}
+            </h1>
+            <p className="text-sm md:text-base text-gray-200 mb-6 max-w-md">
+              {featuredProduct.description}
+            </p>
+            <div className="flex items-center gap-4 flex-wrap">
+              <span className="text-2xl md:text-3xl font-black text-transparent bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text">
+                A${featuredProduct.price}
+              </span>
+              <span className="bg-green-600 text-white px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-bold">
+                ✓ Never Worn
+              </span>
+              <span className="bg-teal-600 text-white px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-bold">
+                ✓ Verified Authentic
+              </span>
+            </div>
+          </motion.div>
+
+          {/* CTA Button - Bottom Right */}
+          <motion.div
+            className="absolute bottom-8 right-8 z-20"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link
+              href="https://depop.app.link/6g078fuJW2b"
+              target="_blank"
+              className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-full font-bold text-sm md:text-base hover:shadow-2xl transition duration-300"
             >
-              <motion.div variants={itemVariants}>
-                <motion.div
-                  className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-teal-500/20 to-pink-500/20 rounded-full border border-teal-400/30 backdrop-blur"
-                  animate={{
-                    boxShadow: [
-                      '0 0 20px rgba(168, 85, 247, 0.2)',
-                      '0 0 40px rgba(168, 85, 247, 0.4)',
-                      '0 0 20px rgba(168, 85, 247, 0.2)',
-                    ]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  <p className="text-teal-300 text-sm font-semibold flex items-center gap-2 justify-center">
-                    <motion.span
-                      animate={{ rotate: 360, scale: [1, 1.2, 1] }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                    >
-                      <Sparkles size={16} />
-                    </motion.span>
-                    FEATURED: Verified Pristine Condition
-                  </p>
-                </motion.div>
-              </motion.div>
-
-              <motion.div variants={itemVariants} className="mb-4 md:mb-6">
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-4 leading-tight tracking-tight">
-                  Never-Worn
-                </h1>
-                <div className="relative inline-block">
-                  <div className="absolute inset-0 bg-gradient-to-r from-teal-500 via-cyan-500 to-teal-500 blur-2xl opacity-50" />
-                  <h2 className="relative text-5xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-teal-300 via-cyan-300 to-teal-300 bg-clip-text text-transparent">
-                    Premium Beanies
-                  </h2>
-                </div>
-              </motion.div>
-
-              <motion.p
-                variants={itemVariants}
-                className="text-lg md:text-2xl text-gray-200 max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed font-light"
-              >
-                Authenticated luxury beanies in pristine condition. Limited stock. Verified authentic. Timeless style.
-              </motion.p>
-
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.08, boxShadow: '0 30px 60px rgba(168, 85, 247, 0.6)' }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Link
-                    href="https://depop.app.link/6g078fuJW2b"
-                    target="_blank"
-                    className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-gradient-to-r from-teal-600 via-cyan-600 to-teal-600 text-white rounded-full font-bold text-base md:text-lg hover:shadow-2xl transition duration-300 backdrop-blur-sm border border-teal-400/50"
-                  >
-                    <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-                      <ExternalLink size={22} />
-                    </motion.span>
-                    Shop on Depop
-                  </Link>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.08, borderColor: 'rgb(255, 255, 255)', backgroundColor: 'rgba(255,255,255,0.15)' }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Link
-                    href="/products"
-                    className="inline-flex items-center justify-center px-8 md:px-10 py-4 md:py-5 bg-white/10 border-2 border-white/40 text-white rounded-full font-bold text-base md:text-lg hover:bg-white/20 transition duration-300 backdrop-blur-sm"
-                  >
-                    Browse Collection
-                  </Link>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          </div>
-
-          {/* Full-Screen Featured Product Display */}
-          <div className="relative z-10 flex-1 flex items-center justify-center px-4 pb-8 md:pb-12">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, rotateY: -20 }}
-              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-              transition={{ duration: 1, delay: 0.4, type: 'spring', stiffness: 100 }}
-              className="w-full max-w-5xl h-full max-h-[600px] md:max-h-[700px] lg:max-h-[750px]"
-              style={{ perspective: '1200px' }}
-            >
-              <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-teal-900 to-cyan-900">
-                {/* Animated background effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-teal-600/20 via-transparent to-cyan-600/20"
-                  animate={{
-                    opacity: [0.5, 1, 0.5],
-                  }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                />
-
-                {/* Featured Product Image */}
-                <motion.div
-                  className="relative w-full h-full"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Image
-                    src={featuredProduct.image || '/lv-beanie-hero.png'}
-                    alt={featuredProduct.name}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                    priority
-                  />
-
-                  {/* Animated overlay with product info */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6, duration: 0.8 }}
-                  >
-                    <motion.div
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.8, duration: 0.6 }}
-                    >
-                      <p className="text-teal-300 text-sm font-semibold mb-2">FEATURED ITEM</p>
-                      <h3 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
-                        {featuredProduct.name}
-                      </h3>
-                      <div className="flex items-center gap-4 mb-4">
-                        <span className="text-3xl font-bold text-transparent bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text">
-                          A${featuredProduct.price}
-                        </span>
-                        <span className="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-bold">
-                          Never Worn
-                        </span>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                </motion.div>
-
-                {/* Animated border glow */}
-                <motion.div
-                  className="absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r from-teal-500/50 via-cyan-500/50 to-purple-500/50 bg-clip-border"
-                  animate={{
-                    opacity: [0.5, 1, 0.5],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  style={{ pointerEvents: 'none' }}
-                />
-              </div>
-            </motion.div>
-          </div>
+              <ExternalLink size={20} />
+              Shop Now
+            </Link>
+          </motion.div>
         </section>
       )}
 
