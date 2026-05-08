@@ -147,7 +147,7 @@ export default function Home() {
                   <h2 className="text-3xl font-bold mb-4">{featuredProduct.name}</h2>
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
                     <span className="text-4xl font-bold text-purple-600">
-                      ${featuredProduct.price}
+                      A${featuredProduct.price}
                     </span>
                     <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full font-semibold text-sm">
                       ✓ Verified Authentic

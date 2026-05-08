@@ -41,7 +41,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
 
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="text-2xl font-bold text-purple-600">${product.price}</p>
+            <p className="text-2xl font-bold text-purple-600">A${product.price}</p>
             <p className={`text-sm ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}`}>
               {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
             </p>
