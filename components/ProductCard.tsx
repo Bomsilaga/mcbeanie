@@ -14,9 +14,12 @@ interface ProductCardProps {
 export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
   return (
     <motion.div
-      className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300"
-      whileHover={{ y: -5 }}
+      className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 group"
+      whileHover={{ y: -8, boxShadow: '0 25px 50px rgba(168, 85, 247, 0.3)' }}
       transition={{ duration: 0.3 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
     >
       <Link href={`/products/${product.slug}`}>
         <div className="relative h-64 bg-gray-200">
@@ -53,14 +56,19 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
           )}
         </div>
 
-        <button
+        <motion.button
+          type="button"
           onClick={() => onAddToCart(product)}
           disabled={product.stock === 0}
           className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2 rounded-lg font-semibold hover:shadow-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          whileHover={{ scale: product.stock > 0 ? 1.02 : 1 }}
+          whileTap={{ scale: product.stock > 0 ? 0.98 : 1 }}
         >
-          <ShoppingCart size={18} />
+          <motion.span animate={{ y: [0, -2, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+            <ShoppingCart size={18} />
+          </motion.span>
           Add to Cart
-        </button>
+        </motion.button>
       </div>
     </motion.div>
   );

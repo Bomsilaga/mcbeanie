@@ -4,11 +4,12 @@ import Header from '@/components/Header';
 import Reviews from '@/components/Reviews';
 import ProductCarousel from '@/components/ProductCarousel';
 import ProductCard from '@/components/ProductCard';
+import AnimatedBackground from '@/components/AnimatedBackground';
 import { neverWornProducts, getFeaturedProduct } from '@/lib/products';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ExternalLink, Star } from 'lucide-react';
+import { ExternalLink, Star, Sparkles } from 'lucide-react';
 
 export default function Home() {
   const [cart, setCart] = useState<any[]>([]);
@@ -46,22 +47,7 @@ export default function Home() {
       {/* Animated Hero Section with Carousel */}
       {featuredProduct && (
         <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
-          {/* Animated Background Elements */}
-          <motion.div
-            className="absolute inset-0 opacity-30"
-            animate={{
-              backgroundPosition: ['0% 0%', '100% 100%'],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
-            style={{
-              backgroundImage:
-                'radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.3) 0%, transparent 50%)',
-            }}
-          />
+          <AnimatedBackground />
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 py-12 md:py-20">
             <motion.div
@@ -71,11 +57,24 @@ export default function Home() {
               className="mb-12 text-center"
             >
               <motion.div variants={itemVariants}>
-                <div className="inline-block mb-6 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full border border-purple-400/30">
+                <motion.div
+                  className="inline-block mb-6 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full border border-purple-400/30 backdrop-blur"
+                  animate={{
+                    boxShadow: [
+                      '0 0 20px rgba(168, 85, 247, 0.2)',
+                      '0 0 40px rgba(168, 85, 247, 0.4)',
+                      '0 0 20px rgba(168, 85, 247, 0.2)',
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
                   <p className="text-purple-300 text-sm font-semibold flex items-center gap-2">
-                    <Star size={16} /> FEATURED: Verified Pristine Condition
+                    <motion.span animate={{ rotate: 360 }} transition={{ duration: 3, repeat: Infinity }}>
+                      <Sparkles size={16} />
+                    </motion.span>
+                    FEATURED: Verified Pristine Condition
                   </p>
-                </div>
+                </motion.div>
               </motion.div>
 
               <motion.h1
@@ -99,20 +98,32 @@ export default function Home() {
                 variants={itemVariants}
                 className="flex flex-col sm:flex-row gap-4 justify-center"
               >
-                <Link
-                  href="https://depop.app.link/6g078fuJW2b"
-                  target="_blank"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition duration-300"
+                <motion.div
+                  whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(168, 85, 247, 0.5)' }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <ExternalLink size={20} />
-                  Shop on Depop
-                </Link>
-                <Link
-                  href="/products"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white/10 border-2 border-purple-400 text-white rounded-lg font-bold text-lg hover:bg-white/20 transition duration-300"
+                  <Link
+                    href="https://depop.app.link/6g078fuJW2b"
+                    target="_blank"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition duration-300"
+                  >
+                    <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+                      <ExternalLink size={20} />
+                    </motion.span>
+                    Shop on Depop
+                  </Link>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.05, borderColor: '#a855f7', backgroundColor: 'rgba(255,255,255,0.15)' }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Browse Here
-                </Link>
+                  <Link
+                    href="/products"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-white/10 border-2 border-purple-400 text-white rounded-xl font-bold text-lg hover:bg-white/20 transition duration-300 backdrop-blur"
+                  >
+                    Browse Collection
+                  </Link>
+                </motion.div>
               </motion.div>
             </motion.div>
 
